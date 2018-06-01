@@ -1,0 +1,94 @@
+/**
+ *	Typography
+ */
+
+@mixin font-default {
+	font-family: "Raleway", serif;
+}
+
+@mixin font-bombshell {
+	font-family: "BombshellPro";
+	font-weight: normal;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+}
+
+/**
+ *	Alignment
+ */
+
+@mixin verticalAlign($position: relative) {
+	position: $position;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+
+@mixin horizontalAlign($position: relative) {
+	position: $position;
+	left: 50%;
+	-webkit-transform: translateX(-50%);
+	-ms-transform: translateX(-50%);
+	transform: translateX(-50%);
+}
+
+/**
+ *	Translate
+ */
+
+@mixin translateX($value) {
+	-webkit-transform: translateX($value);
+	-ms-transform: translateX($value);
+	transform: translateX($value);
+}
+
+@mixin translateY($value) {
+	-webkit-transform: translateY($value);
+	-ms-transform: translateY($value);
+	transform: translateY($value);
+}
+
+@mixin translate($x, $y) {
+	-webkit-transform: translate($x, $y);
+	-ms-transform: translate($x, $y);
+	transform: translate($x, $y);
+}
+
+/**
+ *	Shapes
+ */
+
+@mixin circle {
+	border-radius: 50%;
+}
+
+@mixin circleContainer {
+	border-radius: 50%;
+	overflow: hidden;
+}
+
+/**
+ *	Aspect-ratios (for container of images)
+ *
+ *	The following mixin adds attributes to achieve the following:
+ *	1) Given a width, makes target container maintain given aspect ratio
+ *	2) Crop any excessive content that exceeds aspect ratio
+ *
+ *	http://stackoverflow.com/a/25404121/1217025
+ */
+
+@mixin aspectRatio($width, $height) {
+	height: 0px;
+	padding-bottom: percentage($height/$width);
+	overflow: hidden;
+	img {
+		width: 100%;
+	}
+}
+// Aspect-ratio class factory
+@mixin makeAspectRatioClass($width, $height) {
+	.aspect-ratio-#{$width}-#{$height} {
+		@include aspectRatio($width, $height);
+	}
+}

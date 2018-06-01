@@ -1,0 +1,89 @@
+@import "variables.scss";
+@import "utility.scss";
+
+section.rsvp-view {
+	background: url("/assets/imgs/rsvp-pattern.gif");
+	background-repeat: repeat;
+
+	overflow: auto;
+
+	.rsvp-content-box {
+		background: #fff;
+		margin: 50px auto;
+		padding: 0 20px;
+		width: 80%;
+		min-height: 200px;
+		overflow: auto;
+
+		h2 {
+			@include font-default;
+			color: $default-text-color;
+			text-align: center;
+		}
+
+		.rsvp-content {
+			margin-bottom: 30px;
+		}
+
+		.paragraph {
+			margin-bottom: 15px;
+		}
+
+		.action-pane {
+			text-align: center;
+			margin: 30px 0 0;
+
+			.submit {
+				@include font-bombshell;
+				background-color: $accent-color-3;
+				color: #ffffff;
+				font-size: 20px;
+				padding-top: 18px;
+				border: none;
+				border-radius: 0;
+
+				&:hover {
+					background-color: lighten($accent-color-3, 5%);
+				}
+			}
+		}
+
+		.madlib-input-style {
+			border: none;
+			border-bottom: 2px solid;
+			border-radius: 0;
+			box-shadow: none;
+			color: $accent-color-1;
+			padding-top: 1px;
+			padding-bottom: 1px;
+
+			&:hover:not(:focus):not(:active) {
+				color: lighten($accent-color-1, 15%);
+			}
+		}
+		.madlib-text-input {
+			@extend .madlib-input-style;
+			display: inline;
+			min-width: 126px;
+			text-align: center;
+		}
+		.madlib-select-input.dropdown {
+			.dropdown-toggle {
+				@extend .madlib-input-style;
+				.caret {
+					margin-left: 3px;
+				}
+			}
+		}
+		.madlib-textarea {
+			color: $accent-color-1;
+			border-color: $accent-color-1;
+			box-shadow: none;
+		}
+
+		// custom input styling
+		.madlib-text-input.form-input-action {
+			min-width: 278px;
+		}
+	}
+}

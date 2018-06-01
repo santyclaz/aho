@@ -1,0 +1,108 @@
+@import "variables.scss";
+@import "utility.scss";
+
+/**
+ *	General
+ */
+
+body {
+	@include font-default;
+}
+
+footer {
+	height: 100px;
+}
+
+section .section-description {
+	margin-top: 50px;
+
+	font-size: 1.125em;
+	font-style: italic;
+}
+
+section.sub-section {
+	margin-top: 50px;
+}
+
+/**
+ *	Typography
+ */
+
+h1,
+h2 {
+	@include font-bombshell;
+	color: $accent-color-3;
+}
+
+h1 {
+	font-size: 3em;
+}
+
+h2 {
+	font-size: 2.25em;
+}
+
+h3 {
+	font-size: 1.125em;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.font-default {
+	@include font-default;
+}
+.font-bombshell {
+	@include font-bombshell;
+}
+
+/**
+ *	Jumbo
+ */
+
+.jumbo {
+	position: relative;
+	height: 400px;
+}
+
+/**
+ *	Lists
+ */
+
+dl.dt-text-left {
+	dt {
+		text-align: left;
+	}
+}
+
+/**
+ *	Aspect ratios
+ */
+
+// .aspect-ratio-1-1
+@include makeAspectRatioClass(1, 1);
+// .aspect-ratio-3-2
+@include makeAspectRatioClass(3, 2);
+// .aspect-ratio-4-3
+@include makeAspectRatioClass(4, 3);
+
+/**
+ * Grid classes
+ */
+
+.content-width {
+	width: inherit;
+}
+
+.no-gutter {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+/**
+ * Buttons
+ */
+
+.form-control.inline {
+	display: inline-block;
+	width: inherit;
+}

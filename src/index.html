@@ -1,0 +1,72 @@
+<html ng-app="caa">
+	<head>
+		<base href="/" />
+
+		<title>C&A</title>
+
+		<!-- dependencies (bower) -->
+		<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+		<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.css">
+		<link rel="stylesheet" href="bower_components/tdn.scale-to-fit/src/scale-to-fit.css">
+
+		<!-- dependencies (lib) -->
+		<link rel="stylesheet" href="lib/Bombshell/Bombshell.css">
+
+		<!-- dependencies (CDN) -->
+		<link href='https://fonts.googleapis.com/css?family=Raleway:400,300,100' rel='stylesheet' type='text/css'>
+
+		<!-- common styles -->
+		<link rel="stylesheet" href="common/directives/countdown-to/countdown-to.css">
+		<link rel="stylesheet" href="common/directives/photo/photo.css">
+		<link rel="stylesheet" href="common/directives/place/place.css">
+
+		<!-- app styles -->
+		<link rel="stylesheet" href="assets/styles/main.css">
+		<link rel="stylesheet" href="views/navbar/navbar.css">
+		<link rel="stylesheet" href="views/photos/photos.css">
+		<link rel="stylesheet" href="views/registry/registry.css">
+		<link rel="stylesheet" href="views/rsvp/rsvp.css">
+		<link rel="stylesheet" href="views/story/story.css">
+		<link rel="stylesheet" href="views/todo/todo.css">
+		<link rel="stylesheet" href="views/wedding/wedding.css">
+
+	</head>
+
+	<body>
+
+		<div ng-include="'views/app.html'"></div>
+
+		<!-- dependencies (bower) -->
+		<script src="bower_components/jquery/dist/jquery.js"></script>
+		<script src="bower_components/angular/angular.js"></script>
+		<script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+		<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+		<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+		<script src="bower_components/tdn.scale-to-fit/src/scale-to-fit.js"></script>
+
+		<!-- common -->
+		<script src="common/api/Instagram.js"></script>
+		<script src="common/api/RSVP.js"></script>
+		<script src="common/directives/address/address.js"></script>
+		<script src="common/directives/contenteditable/contenteditable.js"></script>
+		<script src="common/directives/countdown-to/countdown-to.js"></script>
+		<script src="common/directives/photo/photo.js"></script>
+		<script src="common/directives/place/place.js"></script>
+		<script src="common/services/URI.js"></script>
+
+		<!-- app index -->
+		<script src="index.js"></script>
+
+		<!-- app routes -->
+		<script src="routes/routes.js"></script>
+
+		<!-- app views -->
+		<script src="views/navbar/navbar.js"></script>
+		<script src="views/photos/photos.js"></script>
+		<script src="views/rsvp/rsvp.js"></script>
+		<script src="views/story/story.js"></script>
+		<script src="views/todo/todo.js"></script>
+		<script src="views/wedding/wedding.js"></script>
+
+	</body>
+</html>

@@ -1,0 +1,9 @@
+*.log
+*.swp
+.DS_Store
+node_modules
+
+backend/config/*
+!backend/config/*.template
+bower_components
+src/lib/Bombshell

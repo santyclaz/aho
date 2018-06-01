@@ -1,0 +1,43 @@
+{
+	"name": "aho",
+	"version": "0.0.0",
+	"description": "",
+	"main": "index.html",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/santyclaz/caa.git"
+	},
+	"author": "santyclaz",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/santyclaz/caa/issues"
+	},
+	"homepage": "https://github.com/santyclaz/caa",
+	"engines": {
+		"node": "^6.4.0",
+		"npm": "^5.4.0"
+	},
+	"devDependencies": {
+		"bluebird": "^3.4.6",
+		"gulp": "^3.9.0",
+		"gulp-batch": "^1.0.5",
+		"gulp-if": "^2.0.0",
+		"gulp-plumber": "^1.0.1",
+		"gulp-sass": "^4.0.1",
+		"gulp-sourcemaps": "^1.6.0",
+		"gulp-traceur": "^0.17.1",
+		"gulp-watch": "^4.3.10",
+		"hapi": "^17.5.0",
+		"inert": "^5.1.0",
+		"jsonfile": "^4.0.0",
+		"lodash": "^4.17.10",
+		"prettier": "1.13.0",
+		"request": "^2.87.0",
+		"request-promise": "^4.2.2",
+		"require-reload": "^0.2.2",
+		"yargs": "^11.0.0"
+	}
+}

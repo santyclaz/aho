@@ -1,0 +1,91 @@
+@import "variables.scss";
+@import "utility.scss";
+
+section.wedding-view {
+	.jumbo {
+		text-align: center;
+
+		.countdown-to.blocks {
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+			padding-top: 10px;
+			font-weight: bold;
+			color: #fff;
+
+			.countdown-part {
+				display: inline-block;
+				background: rgba(0, 0, 0, 0.3);
+				width: 130px;
+				padding: 25px;
+				margin: 10px 5px 0;
+
+				.value {
+					@include font-bombshell;
+					font-size: 2.125em;
+					display: block;
+				}
+				.unit {
+					display: block;
+					font-size: 1.125em;
+					text-transform: uppercase;
+				}
+			}
+		}
+	}
+
+	.content {
+		position: relative;
+
+		.category {
+			.category-img {
+				@include circleContainer();
+				$category-img-diameter: 200px;
+
+				width: $category-img-diameter;
+				height: $category-img-diameter;
+
+				img {
+					height: 100%;
+				}
+			}
+
+			.category-content {
+				max-width: 550px;
+			}
+		}
+
+		.category.venue {
+			.category-img img {
+				@include translateX(-98px);
+			}
+		}
+
+		.category.schedule {
+			.category-img img {
+				width: 100%;
+			}
+
+			dl {
+				dt {
+					float: left;
+					width: 160px;
+				}
+				dd {
+					margin-left: 160px;
+				}
+			}
+		}
+
+		.category.attire {
+			.category-img img {
+				@include translateX(-22px);
+			}
+		}
+
+		.category.hotels {
+			.category-img img {
+			}
+		}
+	}
+}

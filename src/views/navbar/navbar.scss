@@ -1,0 +1,57 @@
+@import "variables.scss";
+@import "utility.scss";
+
+nav.navbar {
+	$item-line-height: 20px;
+	$item-padding: 15px;
+	$height: $item-line-height + $item-padding * 2;
+
+	margin: 15px 0;
+
+	.logo {
+		@include font-bombshell;
+
+		display: inline-block;
+
+		font-size: 3em;
+		line-height: 27px;
+		padding-top: 25px;
+
+		color: $accent-color-3;
+		text-decoration: none;
+
+		small.ampersand {
+			font-size: 50%;
+		}
+	}
+
+	ul.navbar-nav {
+		li {
+			> a {
+				line-height: $item-line-height;
+				padding: $item-padding;
+
+				color: $accent-color-1;
+				text-transform: uppercase;
+
+				&:hover,
+				&:active,
+				&:focus {
+					background: transparent;
+					color: $default-text-color;
+				}
+			}
+
+			&.active > a {
+				background: transparent;
+				color: $default-text-color;
+			}
+		}
+
+		&.pull-right {
+			li:last-child > a {
+				padding-right: 0;
+			}
+		}
+	}
+}

@@ -1,0 +1,178 @@
+@import "variables.scss";
+@import "utility.scss";
+
+section.story-view {
+	text-align: center;
+
+	.jumbo {
+		> img {
+			&.fill-width {
+				@include translateY(6%);
+			}
+		}
+	}
+
+	h1 {
+		margin-top: 40px;
+	}
+
+	.content {
+		$info-bubble-diameter: 150px;
+
+		position: relative;
+		padding-top: $info-bubble-diameter / 2;
+
+		.info-bubble {
+			@include circle();
+			@include translate(-50%, -50%);
+
+			position: absolute;
+			top: 0;
+			left: 50%;
+
+			width: $info-bubble-diameter;
+			height: $info-bubble-diameter;
+
+			background: $accent-color-1;
+
+			.text {
+				@include verticalAlign();
+				color: #fff;
+				font-size: 1.2em;
+			}
+		}
+
+		.timeline {
+			$timeline-horizontal-spacing: 20px;
+			$timeline-line-width: 2px;
+			$entry-img-diameter: $circle-diameter-lg;
+			$entry-img-radius: $entry-img-diameter / 2;
+			$entry-img-horizontal-padding: 15px;
+			$entry-horizontal-padding: 60px;
+			$entry-vertical-padding: 20px;
+
+			position: relative;
+			margin-top: $entry-img-radius + $timeline-horizontal-spacing;
+			padding-bottom: $entry-img-radius + $timeline-horizontal-spacing;
+
+			.center-line {
+				@include horizontalAlign(absolute);
+
+				top: 0;
+
+				height: 100%;
+				width: $timeline-line-width;
+
+				background: $accent-color-2;
+
+				.timeline-knob {
+					@include translateX(-50%);
+					position: absolute;
+					left: 50%;
+					bottom: -27px;
+
+					height: 50px;
+					> img {
+						height: 100%;
+					}
+				}
+			}
+
+			.entry {
+				padding-top: $entry-img-radius + $entry-vertical-padding;
+
+				&:not(:first-child) {
+					margin-top: $entry-img-radius + $entry-vertical-padding;
+				}
+
+				.entry-line {
+					position: absolute;
+					top: 0;
+
+					width: 90%;
+					height: $timeline-line-width;
+
+					background: $accent-color-2;
+				}
+
+				.entry-img {
+					@include circleContainer();
+					@include translateY(-50%);
+
+					position: absolute;
+					top: 0;
+
+					background: gray;
+					width: $entry-img-diameter;
+					height: $entry-img-diameter;
+
+					img {
+						height: 100%;
+					}
+				}
+			}
+
+			.entry.left {
+				padding-right: $entry-horizontal-padding;
+				text-align: left;
+				.entry-line {
+					right: 0;
+				}
+				.entry-img {
+					left: $entry-img-horizontal-padding;
+				}
+			}
+			.entry.right {
+				padding-left: $entry-horizontal-padding;
+				text-align: left;
+				.entry-line {
+					left: 0;
+				}
+				.entry-img {
+					right: $entry-img-horizontal-padding;
+				}
+			}
+		}
+
+		.timeline {
+			#the-start {
+				.entry-img img {
+					@include translateX(-35px);
+				}
+			}
+			#the-program {
+				margin-top: 173px;
+			}
+			#the-exchanges {
+				margin-top: 129px;
+			}
+			#the-ask {
+				margin-top: 224px;
+			}
+			#his-visit {
+				margin-top: 0px;
+				.entry-img img {
+					@include translateX(-20px);
+				}
+			}
+			#her-visit {
+				margin-top: 182px;
+				.entry-img img {
+					@include translateX(-22px);
+				}
+			}
+			#the-move {
+				margin-top: -50px;
+			}
+			#el-farallon {
+				margin-top: 171px;
+				.entry-img img {
+					@include translateX(-12px);
+				}
+			}
+			#hitched {
+				margin-top: -157px;
+			}
+		}
+	}
+}

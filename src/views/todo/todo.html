@@ -1,0 +1,66 @@
+<section class="wedding-view">
+
+	<div class="jumbo" scale-to-fit-container>
+		<img class="visible-md" src="assets/imgs/todo/banner.jpg" scale-to-fit="'1500:1000'" />
+		<img class="visible-lg" src="assets/imgs/todo/banner.jpg" scale-to-fit="'1500:1000'" />
+		<img class="hidden-md hidden-lg" src="assets/imgs/todo/banner.jpg" scale-to-fit="'1500:1000'" />
+	</div>
+
+	<div class="content">
+
+		<p class="section-description">
+			If you're stopping by Camarillo for more than just our wedding, check out the following attractions in the area!
+		</p>
+
+		<section class="sub-section category shopping row">
+			<div class="col-sm-4 col-md-3">
+				<div class="category-img">
+					<img ng-src="{{categories.shopping.img}}" />
+				</div>
+			</div>
+			<div class="col-sm-8 col-md-9">
+				<h2>{{categories.shopping.name}}</h2>
+				<div ng-repeat="place in categories.shopping.places" place ng-model="place"></div>
+			</div>
+		</section>
+
+		<section class="sub-section category tasting row">
+			<div class="col-sm-4 col-md-3">
+				<div class="category-img">
+					<img ng-src="{{categories.tasting.img}}" />
+				</div>
+			</div>
+			<div class="col-sm-8 col-md-9">
+				<h2>{{categories.tasting.name}}</h2>
+				<div ng-repeat="place in categories.tasting.places" place ng-model="place"></div>
+			</div>
+		</section>
+
+		<section class="sub-section category fruit-picking row">
+			<div class="col-sm-4 col-md-3">
+				<div class="category-img">
+					<img ng-src="{{categories.fruitPicking.img}}" />
+				</div>
+			</div>
+			<div class="col-sm-8 col-md-9">
+				<h2>{{categories.fruitPicking.name}}</h2>
+				<div ng-repeat="place in categories.fruitPicking.places" place ng-model="place"></div>
+			</div>
+		</section>
+
+		<section class="sub-section category museum row">
+			<div class="col-sm-4 col-md-3">
+				<div class="category-img">
+					<img ng-src="{{categories.museum.img}}" />
+				</div>
+			</div>
+			<div class="col-sm-8 col-md-9">
+				<h2>{{categories.museum.name}}</h2>
+				<div ng-repeat="place in categories.museum.places" place ng-model="place"></div>
+			</div>
+		</section>
+
+	</div>
+
+
+</section>

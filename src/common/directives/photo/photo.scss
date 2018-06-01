@@ -1,0 +1,63 @@
+@import "variables.scss";
+@import "utility.scss";
+
+.photo {
+	display: inline-block;
+	position: relative;
+
+	// self
+
+	&.has-click-action {
+		cursor: pointer;
+	}
+
+	// children
+
+	img {
+		width: 100%;
+	}
+
+	.overlay {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+
+		// start off invisible
+		opacity: 0;
+		color: #fff;
+
+		// show up on hover
+		&:hover {
+			$duration: 0.2s;
+			-webkit-transition: opacity $duration;
+			transition: opacity $duration;
+			background-color: rgba(0, 0, 0, 0.5);
+			opacity: 1;
+		}
+
+		// overlay content
+		.overlay-content-wrapper {
+			text-align: center;
+
+			&.vertical-center {
+				&:before {
+					content: "";
+					display: inline-block;
+					vertical-align: middle;
+					width: 0;
+					height: 100%;
+					min-height: inherit;
+					max-height: inherit;
+					padding: 0;
+				}
+				.overlay-content {
+					display: inline-block;
+					vertical-align: middle;
+					letter-spacing: normal;
+				}
+			}
+		}
+	}
+}

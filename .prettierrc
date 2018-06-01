@@ -1,0 +1,19 @@
+{
+	"trailingComma": es5,
+	"useTabs": true,
+	"arrowParens": always,
+	"overrides": [
+		{
+			"files": ".prettierrc",
+			"options": {
+				"parser": "json"
+			}
+		},
+		{
+			"files": "*.json.template",
+			"options": {
+				"parser": "json"
+			}
+		}
+	]
+}

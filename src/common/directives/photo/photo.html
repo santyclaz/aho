@@ -1,0 +1,8 @@
+<img ng-src="{{ngSrc}}" />
+<div class="overlay" ng-if="overlay">
+	<!--
+		no whitespace (or newlines) otherwise vertical centering will fail
+		http://mystrd.at/tough-fucker-the-ultimate-css2-vertical-centering-monster/
+	-->
+	<div class="overlay-content-wrapper vertical-center"><span class="overlay-content">{{overlay.text}}</span></div>
+</div>

@@ -1,0 +1,78 @@
+<section class="wedding-view">
+
+	<div class="jumbo" scale-to-fit-container>
+		<img src="assets/imgs/wedding/banner.jpg" scale-to-fit="'1500:1000'" vertical-align="'bottom'" />
+		<div countdown-to="'2016-08-06T00:00:00-07:00'" class="blocks" format="format"></div>
+	</div>
+
+	<div class="content">
+
+		<section class="sub-section category venue row">
+			<div class="col-sm-4 col-md-3">
+				<div class="category-img">
+					<img ng-src="{{categories.venue.img}}" />
+				</div>
+			</div>
+			<div class="col-sm-8 col-md-9 category-content">
+				<h2>{{categories.venue.name}}</h2>
+				<div ng-repeat="place in categories.venue.places" place ng-model="place"></div>
+			</div>
+		</section>
+
+		<section class="sub-section category schedule row">
+			<div class="col-sm-4 col-md-3">
+				<div class="category-img">
+					<img ng-src="{{categories.schedule.img}}" />
+				</div>
+			</div>
+			<div class="col-sm-8 col-md-9 category-content">
+				<h2>{{categories.schedule.name}}</h2>
+				<dl class="dl-horizontal dt-text-left">
+					<dt>4:00 PM</dt>
+					<dd>Guests arrive and mingle</dd>
+					<dt>4:30 PM</dt>
+					<dd>Ceremony</dd>
+					<dt>5:00 PM</dt>
+					<dd>Cocktail Hour</dd>
+					<dt>6:00 PM</dt>
+					<dd>Reception & Dance Party</dd>
+					<dt>10:00 PM and after</dt>
+					<dd>After party at <a href="http://www.bogies-bar.com" target="_blank">Bogies</a>!</dd>
+				</dl>
+			</div>
+		</section>
+
+		<section class="sub-section category attire row">
+			<div class="col-sm-4 col-md-3">
+				<div class="category-img">
+					<img ng-src="{{categories.attire.img}}" />
+				</div>
+			</div>
+			<div class="col-sm-8 col-md-9 category-content">
+				<h2>{{categories.attire.name}}</h2>
+				<h3>Summer Cocktail</h3>
+				<p>
+					<strong>Gents:</strong> Both the ceremony and reception are held outdoors. It will be hot in August, feel free to leave your jackets at home.
+				</p>
+				<p>
+					<strong>Ladies:</strong> Gerry Ranch is surrounded by dirt paths and grass. Wedges are probably a better choice but if you want to wear heels, make sure to grab a pair of <a target="_blank" href="//www.thesolemates.com/shop/solemates-high-heeler">heel protectors</a>.
+				</p>
+			</div>
+		</section>
+
+		<section class="sub-section category hotels row">
+			<div class="col-sm-4 col-md-3">
+				<div class="category-img">
+					<img ng-src="{{categories.hotels.img}}" />
+				</div>
+			</div>
+			<div class="col-sm-8 col-md-9">
+				<h2>{{categories.hotels.name}}</h2>
+				<div ng-repeat="place in categories.hotels.places" place ng-model="place"></div>
+			</div>
+		</section>
+
+	</div>
+
+
+</section>

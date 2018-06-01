@@ -1,0 +1,15 @@
+<h1 class="text-center">You In or What?</h1>
+
+<section class="rsvp-view">
+
+	<div class="rsvp-content-box">
+		<h2>RSVP</h2>
+
+		<div class="rsvp-content">
+			<div ng-if="!rsvpSent" ng-include="'views/rsvp/rsvp-form.html'"></div>
+			<div class="text-center" ng-if="rsvpSent" ng-include="'views/rsvp/rsvp-form-success.html'"></div>
+		</div>
+
+	</div>
+
+</section>

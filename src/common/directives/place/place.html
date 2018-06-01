@@ -1,0 +1,38 @@
+<div class="place">
+	<div class="place-img" ng-if="place.img">
+		<img ng-src="{{place.img}}" />
+	</div>
+	<div class="place-info">
+		<h3>{{place.name}}</h3>
+		<ul class="place-details">
+			<li ng-if="place.website">
+				<a ng-href="{{place.website.url}}" target="_blank">
+					{{place.website.label ? place.website.label : place.website.url}}
+				</a>
+			</li>
+			<li ng-if="place.address">
+				<div address ng-model="place.address"></div>
+			</li>
+			<li ng-if="place.mapLink">
+				<a ng-href="{{place.mapLink}}" target="_blank">map</a>
+			</li>
+			<li ng-if="place.phone">
+				{{place.phone}}
+			</li>
+		</ul>
+		<div class="description" ng-if="place.reservation">
+			<div ng-if="!place.reservation.price && place.reservation.url">
+				Make your reservation on their <a ng-href="{{place.reservation.url}}" target="_blank">website</a>.
+			</div>
+			<div ng-if="place.reservation.price && place.reservation.url">
+				Discounted rate<span ng-hide="place.reservation.fixedPrice">s starting</span> at {{place.reservation.price}}, <a ng-href="{{place.reservation.url}}" target="_blank">click here</a> to book. <span ng-show="place.reservation.details">{{place.reservation.details}}</span>
+			</div>
+			<div ng-if="place.reservation.price && !place.reservation.url">
+				Discounted rate<span ng-hide="place.reservation.fixedPrice">s starting</span> at {{place.reservation.price}}. <span ng-show="place.reservation.details">{{place.reservation.details}}</span>
+			</div>
+		</div>
+		<div class="description" ng-if="place.description">
+			{{place.description}}
+		</div>
+	</div>
+</div>

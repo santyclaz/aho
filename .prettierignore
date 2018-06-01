@@ -1,0 +1,13 @@
+*.log
+*.swp
+.git
+.DS_Store
+node_modules
+npm-shrinkwrap.json
+package-lock.json
+
+*.css
+backend/config/*
+!backend/config/*.template
+bower_components
+src/lib/

@@ -1,0 +1,33 @@
+@import "variables.scss";
+@import "utility.scss";
+
+.place {
+	$img-diameter: $circle-diameter-lg;
+
+	overflow: hidden;
+
+	.place-img {
+		@include circleContainer();
+		float: left;
+
+		width: $img-diameter;
+		height: $img-diameter;
+
+		img {
+			height: 100%;
+		}
+	}
+
+	.place-info {
+		float: left;
+
+		ul.place-details {
+			list-style: none;
+			padding-left: 0;
+		}
+
+		.description {
+			margin-top: 10px;
+		}
+	}
+}

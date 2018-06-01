@@ -1,0 +1,33 @@
+@import "variables.scss";
+@import "utility.scss";
+
+section.registry-view {
+	.jumbo {
+		img.fill-width.visible-md {
+			top: 137px;
+		}
+		img.fill-width.visible-lg {
+			top: 80px;
+		}
+	}
+
+	.registry-content-box {
+		margin-top: 50px;
+	}
+
+	table.registry-list {
+		width: 100%;
+		margin-top: 20px;
+		text-align: center;
+
+		tr {
+			td {
+				height: 175px;
+			}
+		}
+	}
+
+	.registry-link {
+		width: 280px;
+	}
+}

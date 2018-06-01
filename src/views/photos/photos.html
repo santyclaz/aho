@@ -1,0 +1,17 @@
+<h1>Photos</h1>
+
+<section class="photos-view">
+	<div class="row">
+		<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 no-gutter" ng-repeat="photo in photos">
+			<span
+				photo
+				ng-src="photo.images.thumbnail.url"
+				ng-click="openGallery()"
+				overlay="{
+					text: photo.caption.text
+				}"
+				>
+			</span>
+		</div>
+	</div>
+</section>

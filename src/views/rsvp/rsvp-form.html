@@ -1,0 +1,62 @@
+<form name="rsvpForm">
+
+	<div class="paragraph">
+		Dear Charlene and Andrew,
+	</div>
+	<div class="paragraph">
+		I, <span ng-model="form.name.value" class="form-control inline madlib-text-input" placeholder="Your Full Name" contenteditable="true" required></span> will
+		<span uib-dropdown class="madlib-select-input">
+			<span uib-dropdown-toggle class="btn">
+				{{form.attending.value === null ? 'Select One' : form.attending.value}} <span class="caret"></span>
+			</span>
+			<ul uib-dropdown-menu>
+				<li ng-repeat="option in form.attending.options">
+					<a href="#" ng-click="form.attending.select(option)">
+						{{option}}
+					</a>
+				</li>
+			</ul>
+		</span>
+		be attending your wedding on August 6th, 2016.
+	</div>
+
+	<div ng-show="form.attending.isTrue()">
+		<div class="paragraph">
+			My invitation mentioned I can bring
+			<span uib-dropdown class="madlib-select-input">
+				<span uib-dropdown-toggle class="btn">
+					{{form.inviteCount.value === null ? 'Select One' : form.inviteCount.selected.label}} <span class="caret"></span>
+				</span>
+				<ul uib-dropdown-menu>
+					<li ng-repeat="option in form.inviteCount.options">
+						<a href="#" ng-click="form.inviteCount.select(option)">
+							{{option.label}}
+						</a>
+					</li>
+				</ul>
+			</span>.
+		</div>
+		<div class="paragraph">
+			<ul class="list-unstyled">
+				<li ng-repeat="guest in form.guests.value track by $index">
+					Guest {{$index + 1}}, <span ng-model="guest.name" class="form-control inline madlib-text-input" placeholder="Full Name" contenteditable="true"></span>
+				</li>
+			</ul>
+		</div>
+		<div class="paragraph">
+			When the party starts popping, Charlene and Andrew should <span ng-model="form.action.value" class="form-control inline madlib-text-input form-input-action" placeholder="Insert Action (i.e. do the chicken dance)" contenteditable="true"></span> when the DJ plays my song request <span ng-model="form.song.value" class="form-control inline madlib-text-input" placeholder="Song Name" contenteditable="true"></span>.
+		</div>
+		<div class="paragraph">
+			Additional comments
+			<textarea class="form-control madlib-textarea" ng-model="form.comments.value" placeholder="e.g. dietary restrictions"></textarea>
+		</div>
+		<div class="paragraph">
+			See you there!
+		</div>
+	</div>
+
+	<div class="action-pane">
+		<button class="submit btn-lg" ng-click="submit(rsvpForm)">Send!</button>
+	</div>
+
+</form>
