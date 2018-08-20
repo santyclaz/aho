@@ -38,6 +38,8 @@
 		"request": "^2.87.0",
 		"request-promise": "^4.2.2",
 		"require-reload": "^0.2.2",
+		"trace-error": "0.0.7",
 		"yargs": "^11.0.0"
-	}
+	},
+	"dependencies": {}
 }

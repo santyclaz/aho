@@ -7,6 +7,7 @@ const _ = require("lodash");
 const Hapi = require("hapi");
 const jsonfile = require("jsonfile");
 const Promise = require("bluebird");
+const TraceError = require("trace-error");
 const reload = require("require-reload")(require);
 
 const defaultOpts = {
@@ -104,7 +105,7 @@ Server.prototype.start = async function(config) {
 	// Doing this check here since there shouldn't be state cleanup in this scenario
 	if (this.getStatus() !== Server.Status.STOPPED) {
 		let msg = Server.getInvalidStatusErrorMessage(this.getStatus());
-		throw new Error(msg);
+		throw new StartError(msg);
 	}
 
 	try {
@@ -112,9 +113,8 @@ Server.prototype.start = async function(config) {
 	} catch (e) {
 		// do state cleanup on unexpected failure
 		this.reset();
-		throw e;
+		throw new StartError("Error starting server", e);
 	}
-
 	return this;
 };
 Server.prototype.__startRaw = async function(config) {
@@ -178,7 +178,7 @@ Server.prototype.stop = async function() {
 	// Doing this check here since there shouldn't be state cleanup in this scenario
 	if (this.getStatus() !== Server.Status.STARTED) {
 		let msg = Server.getInvalidStatusErrorMessage(this.getStatus());
-		throw new Error(msg);
+		throw new StopError(msg);
 	}
 
 	try {
@@ -186,9 +186,8 @@ Server.prototype.stop = async function() {
 	} catch (e) {
 		// do state cleanup on unexpected failure
 		this.internalState = Server.Status.STARTED;
-		throw e;
+		throw new StopError("Error stopping server", e);
 	}
-
 	return this;
 };
 // stop without auto-cleanup on error
@@ -217,7 +216,7 @@ Server.prototype.restart = async function(config) {
 	let stoppedPromise;
 	if (this.getStatus() === Server.Status.STARTING) {
 		stoppedPromise = this.startedPromise.then(() => {
-			this.stop();
+			return this.stop();
 		});
 	} else if (this.getStatus() === Server.Status.STARTED) {
 		stoppedPromise = this.stop();
@@ -228,14 +227,22 @@ Server.prototype.restart = async function(config) {
 	}
 
 	this.restartPromise = stoppedPromise
-		// calling __startRaw() intead of start() to ignore status constraint
-		.then(() => this.__startRaw())
+		.then(() => {
+			// calling __startRaw() intead of start() to ignore status constraint
+			// nesting catch here since this is specific to handling errors from __startRaw()
+			return this.__startRaw().catch((e) => {
+				this.reset();
+				throw new StartError("Error starting server", e);
+			});
+		})
 		.finally(() => {
 			this.restartPromise = null;
 		});
 
-	await this.restartPromise;
-	return this;
+	// on successful restart, return this
+	return this.restartPromise.then(() => {
+		return this;
+	});
 };
 
 Server.prototype.getUri = function() {
@@ -261,6 +268,14 @@ Server.prototype.reset = function() {
 	this.stoppedPromise = null;
 	this.internalState = Server.State.STOPPED;
 };
+
+/**
+ *	Helper functions
+ */
+
+class StartError extends TraceError {}
+
+class StopError extends TraceError {}
 
 /**
  *	Helper functions
