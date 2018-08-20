@@ -93,9 +93,12 @@ function watchApiTask() {
 		// TODO: queue up changes (gulp-batch)
 		getServer()
 			.restart()
-			.then(function(server) {
+			.then((server) => {
 				console.log(`Server restarted: ${server.getUri()}`);
 				console.log(server.getStartUpApiConfig());
+			})
+			.catch((e) => {
+				console.log(e);
 			});
 	});
 }

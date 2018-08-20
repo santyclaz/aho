@@ -23,23 +23,32 @@ var defaultOpts = {
 	spa: true,
 };
 
-async function register(server, options) {
+async function register(
+	server,
+	// options
+	{
+		rootDir, // required, path to client root dir
+		index = "index.html",
+		livereload = true,
+		spa = true,
+	} = {}
+) {
 	/**
 	 * Process options
 	 */
 
-	options = typeof options === "object" ? options : {};
-
-	if (!("rootDir" in options) || typeof options.rootDir !== "string") {
-		throw new Error("options.rootDir is required");
+	if (rootDir === undefined) {
+		throw new Error(`rootDir option is required`);
+	} else if (typeof rootDir !== "string") {
+		throw new Error(
+			`Invalid rootDir option "${rootDir}", expected to be of type string`
+		);
 	}
-	if ("index" in options && typeof options.index !== "string") {
-		throw new Error("options.index currently only supports string");
+	if (typeof index !== "string") {
+		throw new Error(
+			`Invalid index option "${index}", expected to be of type string`
+		);
 	}
-
-	var path = options.rootDir;
-	var index = "index" in options ? options.index : defaultOpts.index;
-	var spa = "spa" in options ? options.spa : defaultOpts.spa;
 
 	/**
 	 * Serve static files
@@ -53,7 +62,7 @@ async function register(server, options) {
 		path: "/{param*}",
 		handler: {
 			directory: {
-				path: path,
+				path: rootDir,
 				listing: false,
 				index: index,
 			},
@@ -78,7 +87,7 @@ async function register(server, options) {
 
 			if (statusCode === 404) {
 				// h.file(...) decorated by inert
-				return h.file(path + "/" + index);
+				return h.file(rootDir + "/" + index);
 			}
 		}
 
