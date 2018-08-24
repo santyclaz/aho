@@ -3,7 +3,6 @@
 const fs = require("fs");
 const path = require("path");
 
-const _ = require("lodash");
 const Hapi = require("hapi");
 const jsonfile = require("jsonfile");
 const Promise = require("bluebird");
@@ -123,7 +122,7 @@ Server.prototype.__startRaw = async function(config) {
 	// process options
 	// if new set of configs provided, override current
 	if (config) {
-		this.config = _.extend({}, config);
+		this.config = Object.assign({}, config);
 	}
 	let { host = defaultOpts.host, port = defaultOpts.port } = this.config;
 
@@ -140,7 +139,7 @@ Server.prototype.__startRaw = async function(config) {
 
 	// register API if set
 	if ("api" in this.config) {
-		let apiConfig = _.extend({}, defaultOpts.api, this.config.api);
+		let apiConfig = Object.assign({}, defaultOpts.api, this.config.api);
 		let apiDirs = new ApiDirs(apiConfig);
 		let baseUrl = apiConfig.baseUrl;
 
@@ -156,7 +155,11 @@ Server.prototype.__startRaw = async function(config) {
 
 	// register client if set
 	if ("client" in this.config) {
-		let clientConfig = _.extend({}, defaultOpts.client, this.config.client);
+		let clientConfig = Object.assign(
+			{},
+			defaultOpts.client,
+			this.config.client
+		);
 
 		// register client routes
 		await this.server.register({
@@ -210,7 +213,7 @@ Server.prototype.restart = async function(config) {
 
 	// if new set of configs provided, override current
 	if (config) {
-		this.config = _.extend({}, config);
+		this.config = Object.assign({}, config);
 	}
 
 	let stoppedPromise;
@@ -389,7 +392,7 @@ function registerConfigs(server, rootDir) {
 	let configs = fs.readdirSync(CONFIG_DIR);
 	let configsMap = {};
 
-	configs.forEach(function register(config) {
+	configs.forEach((config) => {
 		let configPath = CONFIG_DIR + config,
 			filename;
 		// register all *.json files in CONFIG_DIR
@@ -398,7 +401,7 @@ function registerConfigs(server, rootDir) {
 			filename = path.basename(configPath, ".json");
 
 			// register config accessor function
-			configsMap[filename] = function getConfig() {
+			configsMap[filename] = () => {
 				let configObj = jsonfile.readFileSync(configPath);
 				return configObj;
 			};
@@ -406,7 +409,7 @@ function registerConfigs(server, rootDir) {
 	});
 
 	server.app.config = {
-		get: function(key) {
+		get: (key) => {
 			return configsMap[key]();
 		},
 	};
