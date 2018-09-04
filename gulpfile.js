@@ -9,6 +9,9 @@ const path = require("path");
 // gulp & task utilities
 const gulp = require("gulp");
 const argv = require("yargs").argv;
+const c = require("ansi-colors");
+const log = require("fancy-log");
+const prettyMs = require("pretty-ms");
 
 // dev dependencies
 const gulpif = require("gulp-if");
@@ -67,13 +70,16 @@ async function serveTask() {
 	}
 
 	var server = getServer();
+	var start = new Date();
 	await server.start(config);
 
 	// TODO: livereload
 	// TODO: auto browser open
 
-	console.log(`Server started: ${server.getUri()}`);
-	console.log(server.getStartUpApiConfig());
+	var uri = server.getUri();
+	var duration = prettyMs(new Date() - start);
+	log(`Server started at ${c.cyan(uri)} after ${c.magenta(duration)}`);
+	log(server.getStartUpApiConfig());
 
 	// watch option
 	if (argv.w !== undefined) {
@@ -91,14 +97,21 @@ function watchApiTask() {
 	return observe(config.src, function() {
 		// TODO: handle restart error
 		// TODO: queue up changes (gulp-batch)
+		var start = new Date();
 		getServer()
 			.restart()
 			.then((server) => {
-				console.log(`Server restarted: ${server.getUri()}`);
-				console.log(server.getStartUpApiConfig());
+				var uri = server.getUri();
+				var duration = prettyMs(new Date() - start);
+				log(
+					`Server restarted at ${c.cyan(uri)} after ${c.magenta(
+						duration
+					)}`
+				);
+				log(server.getStartUpApiConfig());
 			})
 			.catch((e) => {
-				console.log(e);
+				log(e);
 			});
 	});
 }
@@ -159,7 +172,7 @@ function getServer() {
 }
 
 function observe(source, callback) {
-	console.log("Watching", source);
+	log("Watching", source);
 	return (
 		gulp
 			.src(source)
@@ -169,14 +182,14 @@ function observe(source, callback) {
 				watch(source, function(vinyl) {
 					if (vinyl.event !== undefined) {
 						var filePath = path.relative(__dirname, vinyl.path);
-						console.log(filePath + " modified...");
+						log(c.magenta(filePath) + " modified...");
 						try {
 							if (typeof callback === "function") {
 								callback(vinyl.path);
 							}
 						} catch (e) {
 							// need this since watch seems to swallow exceptions
-							console.log("stack" in e ? e.stack : e);
+							log("stack" in e ? e.stack : e);
 						}
 					}
 				})
