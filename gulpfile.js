@@ -58,7 +58,7 @@ gulp.task("watch:sass", watchSassTask);
  */
 
 async function serveTask() {
-	var config = serveTask.config;
+	let config = serveTask.config;
 
 	// TODO: look into usage & demand npm packages for config
 
@@ -69,15 +69,15 @@ async function serveTask() {
 		config.port = argv.p;
 	}
 
-	var server = getServer();
-	var start = new Date();
+	let server = getServer();
+	let start = new Date();
 	await server.start(config);
 
 	// TODO: livereload
 	// TODO: auto browser open
 
-	var uri = server.getUri();
-	var duration = prettyMs(new Date() - start);
+	let uri = server.getUri();
+	let duration = prettyMs(new Date() - start);
 	log(`Server started at ${c.cyan(uri)} after ${c.magenta(duration)}`);
 	log(server.getStartUpApiConfig());
 
@@ -93,16 +93,16 @@ serveTask.config = {
 };
 
 function watchApiTask() {
-	var config = watchApiTask.config;
+	let config = watchApiTask.config;
 	return observe(config.src, function() {
 		// TODO: handle restart error
 		// TODO: queue up changes (gulp-batch)
-		var start = new Date();
+		let start = new Date();
 		getServer()
 			.restart()
 			.then((server) => {
-				var uri = server.getUri();
-				var duration = prettyMs(new Date() - start);
+				let uri = server.getUri();
+				let duration = prettyMs(new Date() - start);
 				log(
 					`Server restarted at ${c.cyan(uri)} after ${c.magenta(
 						duration
@@ -128,8 +128,8 @@ function watchSassTask() {
 }
 
 function compileSass(startWatch) {
-	var config = compileSass.config;
-	var stream;
+	let config = compileSass.config;
+	let stream;
 
 	if (startWatch === true) {
 		stream = observe(config.src);
@@ -181,7 +181,7 @@ function observe(source, callback) {
 			.pipe(
 				watch(source, function(vinyl) {
 					if (vinyl.event !== undefined) {
-						var filePath = path.relative(__dirname, vinyl.path);
+						let filePath = path.relative(__dirname, vinyl.path);
 						log(c.magenta(filePath) + " modified...");
 						try {
 							if (typeof callback === "function") {
